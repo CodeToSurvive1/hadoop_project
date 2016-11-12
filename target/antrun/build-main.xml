@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <property file="src/main/resources/application.development.properties"/>
+  <property file="src/main/resources/application.properties"/>
+  <sql password="${jdbc.password}" driver="${jdbc.driver}" onerror="continue" encoding="UTF-8" userid="${jdbc.username}" url="${jdbc.url}">
+    <classpath refid="maven.test.classpath"/>
+    <transaction src="src/main/resources/sql/mysql/schema.sql"/>
+    <transaction src="src/test/resources/data/h2/import-data.sql"/>
+  </sql>
+</target>
+</project>
